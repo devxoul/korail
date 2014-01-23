@@ -28,7 +28,7 @@ Basically, to login via *membership number signing*:
 
 ::
 
-    import korail
+    from korail import Korail
     
     korail = Korail()
     korail.login('12345678', '0000')  # membership number signing
