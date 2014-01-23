@@ -202,7 +202,7 @@ class Korail(object):
             'txtDptTm1': train.dep_time,  # 출발시각
             'txtArvRsStnCd1': train.arr_code,  # 도착역 코드
             'txtTrnClsfCd1': train.train_type,  # 열차 종류 (Train Class Code인듯)
-            'txtSeatAttCd4': '15',  # ??? - 요구속성 (다른 번호는 창측/내측 이런거던데...)
+            'txtSeatAttCd4': '15',  # 15: 기본, 19: 유아동반, 19: 편한대화(중복?), 31: 노트북, 21: 휠체어, 28: 전동휠체어, 29: 교통약자(없어진듯), XX: 수유실인접, 18: 2층석, 32: 자전거거치대, 30: 레포츠보관함
             'txtPsgTpCd1': '1',  # ??? - 단체예약, 개인예약 구분이라는데...
             'txtJobId': '1101',  # 1101: 개인예약, 1102: 예약대기, 1103: SEATMAP예약
             'txtJrnyCnt': '1',  # 환승 횟수 (1이면 편도)
