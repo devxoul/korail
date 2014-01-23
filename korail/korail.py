@@ -6,6 +6,9 @@ import requests
 
 class Train(object):
 
+    #: 기차 코드
+    train_code = None
+
     #: 기차 종류
     train_type = None
 
@@ -32,6 +35,23 @@ class Train(object):
 
     #: 일반실 예약가능 여부
     general_admission = False
+
+    #: 경유 코드
+    #.: 경유 없음
+    #1: 수원 경유
+    #2: 구포 경유
+    #3: 영주 경유
+    #S: 정차역 적음 (#00001, #00002 KTX는 서울<->부산 직행)
+    via_code = None
+
+    #: 차량유형/편성정보
+    #W: 휠체어 아이콘
+    #27: 테이블 아이콘
+    #M: 음료수 아이콘
+    #17: 영화 아이콘
+    #자세하게 아시는 분은 추가 부탁드립니다...
+    train_info = None
+    
 
     def __repr__(self):
         return '[%s] %s~%s(%s~%s) [특실:%d][일반실:%d]' % (
@@ -154,6 +174,7 @@ class Korail(object):
         for info in train_info:
             obj = info.split(',')
             train = Train()
+            train.train_code = obj[20].strip()[1:-1]
             train.train_type = obj[22].strip()[1:-1]
             train.dep_code = obj[18].strip()[1:-1]
             train.dep_date = obj[24].strip()[1:-1]
@@ -161,6 +182,15 @@ class Korail(object):
             train.arr_code = obj[19].strip()[1:-1]
             train.arr_time = obj[27].strip()[1:-1]
             train.count = count
+            train.via_code = obj[30].strip()[1:-1]
+
+            info = []
+            info.append(obj[32].strip()[1:-1])
+            info.append(obj[33].strip()[1:-1])
+            info.append(obj[34].strip()[1:-1])
+            info.append(obj[35].strip()[1:-1])
+            info.append(obj[36].strip()[1:-1])
+            train.train_info = info
 
             td7s = rows[i].select('td[width=7%]')
 
