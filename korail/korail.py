@@ -53,12 +53,6 @@ class Korail(object):
     #: Static stations data from `stations.json`.
     stations = None
 
-    def __init__(self):
-        import json
-        f = open('stations.json')
-        json_data = f.read()
-        self.stations = json.loads(json_data)
-
     def all_stations(self):
         """Load all stations from Korail server. Recommend using static json
         file instead.
@@ -83,7 +77,8 @@ class Korail(object):
 
         :param query: A searching query.
         """
-        return [s for s in self.stations if query in s['name']]
+        import stations
+        return [s for s in stations.stations if query in s['name']]
 
     def login(self, id, password, use_phone=False):
         """Login to Korail server.

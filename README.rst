@@ -8,7 +8,7 @@ An unofficial Korail API for Python.
 Installation
 ------------
 
-Korail will be uploaded to *pypi* soon. Then you can install Korail with ``pip`` command like below:
+You can install Korail with ``pip`` command like below:
 
 ::
 
@@ -44,7 +44,7 @@ Or via *phone number signing*:
 2. Search Station
 ~~~~~~~~~~~~~~~~~
 
-Search a station code with station name. All station code and name data is stored in ``stations.json`` file in package.
+Search a station code with station name. All station code and name data is stored in ``stations.py`` file in package.
 
 A single station data looks like:
 
