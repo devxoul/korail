@@ -49,6 +49,7 @@ class Korail(object):
 
     #: A `requests` session.
     session = requests.session()
+    session.headers["User-Agent"] = "Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)"
 
     #: Static stations data from `stations.json`.
     stations = None
@@ -185,10 +186,8 @@ class Korail(object):
         """
 
         # reservation server checks referer.
-        self.session.headers = {
-            'Referer':
+        self.session.headers['Referer'] = \
             'http://www.korail.com/servlets/pr.pr21100.sw_pr21111_i1Svt'
-        }
         url = 'http://www.korail.com/servlets/pr.pr12100.sw_pr12111_i1Svt'
         data = {
             'txtCompaCnt1': train.count,  # 인원
