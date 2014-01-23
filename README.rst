@@ -37,7 +37,7 @@ Or via *phone number signing*:
 
 ::
 
-    korail.login('010-1234-5678', True)  # phone number siging
+    korail.login('010-1234-5678', '0000', True)  # phone number siging
 
 
 
@@ -52,7 +52,7 @@ A single station data looks like:
 
     {
         "code": "0001",
-        "name": "서울"
+        "name": u"서울"
     }
 
 ::
@@ -74,10 +74,10 @@ arr
     An arrival station code.
 
 date
-    Departure date. (yyyyMMdd formatted)
+    Departure date. (``yyyyMMdd`` formatted)
 
 time (Default='000000')
-    Departure time. (hhmmss formatted)
+    Departure time. (``hhmmss`` formatted)
 
 train (Default='05')
     A train type. One of these:
