@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='Korail',
     packages=['korail'],
-    version='0.0.1',
+    version='0.0.3',
     description='An unoffical API for Korail.',
     long_description=open('README.rst').read(),
     license='BSD License',
