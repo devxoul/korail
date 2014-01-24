@@ -164,6 +164,10 @@ class Korail(object):
 
             td7s = rows[i].select('td[width=7%]')
 
+            # https://github.com/devxoul/korail/issues/4
+            if not td7s:
+                break
+
             # 특실
             img = td7s[0].select('img')
             content = img[0] if img else td7s[0].contents[0]
