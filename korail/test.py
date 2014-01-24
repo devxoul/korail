@@ -8,12 +8,31 @@ class TestKorail(unittest.TestCase):
     korail = Korail()
 
     def test_0_login(self):
-        user_id = raw_input(u"ID: ")
+        user_id = raw_input("ID: ")
         password = getpass()
-        rv = self.korail.login(user_id, password, True)
+        phone_signing = raw_input("Use Phone Signing? (y/N) ").lower() == 'y'
+        rv = self.korail.login(user_id, password, phone_signing)
         self.assertEqual(rv, True)
 
-    def test_1_search_reserve(self):
+    def test_1_search_ktx(self):
+        from datetime import datetime
+        dep = '0001'
+        arr = '0015'
+        train_type = '00'
+        date = datetime.strftime(datetime.now(), '%Y%m%d')
+        time = datetime.strftime(datetime.now(), '%H%M%S')
+
+        try:
+            trains = self.korail.search_train(dep, arr, date, time, train_type)
+        except KorailError as e:
+            self.fail(e.message.encode('utf-8'))
+
+        for train in trains:
+            if train.train_type != '00' and train.train_type != '07':
+                self.fail('Non-KTX train(%s) is included in search result.' %
+                          train.train_type)
+
+    def test_2_search_reserve(self):
         from datetime import datetime
         dep = '0001'
         arr = '0015'
@@ -35,7 +54,7 @@ class TestKorail(unittest.TestCase):
         tickets = self.korail.tickets()
         self.assertEqual(len(tickets), tickets_count + 1)
 
-    def test_2_cancel_all(self):
+    def test_4_cancel_all(self):
         tickets = self.korail.tickets()
         for ticket in tickets:
             self.korail.cancel_ticket(ticket)

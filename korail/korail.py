@@ -7,6 +7,15 @@ import requests
 class Train(object):
 
     #: 기차 종류
+    #: 00: KTX
+    #: 01: 새마을호
+    #: 02: 무궁화호
+    #: 03: 통근열차
+    #: 04: 누리로
+    #: 05: 전체 (검색시에만 사용)
+    #: 06: 공학직통
+    #: 07: KTX-산천
+    #: 09: ITX-청춘
     train_type = None
 
     #: 출발역 코드
@@ -117,7 +126,7 @@ class Korail(object):
         :param date: A departure date. `yyyyMMdd` formatted.
         :param time: A departure time. `hhmmss` formatted.
         :param train: A type of train.
-                      - 00: KTX
+                      - 00: KTX, KTX-산천(07)도 함께 검색됨
                       - 01: 새마을호
                       - 02: 무궁화호
                       - 03: 통근열차
@@ -136,6 +145,7 @@ class Korail(object):
             'checkStnNm': 'N',
             'radJobId': '1',  # 직통
             'txtPsgCnt1': count,
+            'selGoTrain': train
         }
         r = self.session.get(url, params=params)
 
