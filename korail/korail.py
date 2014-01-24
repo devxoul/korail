@@ -49,10 +49,10 @@ class Korail(object):
 
     #: A `requests` session.
     session = requests.session()
-    session.headers["User-Agent"] = "Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)"
 
-    #: Static stations data from `stations.json`.
-    stations = None
+    def __init__(self):
+        self.session.headers["User-Agent"] = \
+            "Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)"
 
     def all_stations(self):
         """Load all stations from Korail server. Recommend using static json
@@ -200,11 +200,30 @@ class Korail(object):
             'txtDptTm1': train.dep_time,  # 출발시각
             'txtArvRsStnCd1': train.arr_code,  # 도착역 코드
             'txtTrnClsfCd1': train.train_type,  # 열차 종류 (Train Class Code인듯)
-            'txtSeatAttCd4': '15',  # 15: 기본, 19: 유아동반, 19: 편한대화(중복?), 31: 노트북, 21: 휠체어, 28: 전동휠체어, 29: 교통약자(없어진듯), XX: 수유실인접, 18: 2층석, 32: 자전거거치대, 30: 레포츠보관함
+
+            # 15: 기본
+            # 18: 2층석
+            # 19: 유아동반
+            # 19: 편한대화(중복?)
+            # 21: 휠체어
+            # 28: 전동휠체어
+            # 29: 교통약자(없어진듯)
+            # 30: 레포츠보관함
+            # 31: 노트북
+            # 32: 자전거거치대
+            # XX: 수유실인접
+            'txtSeatAttCd4': '15',
             'txtPsgTpCd1': '1',  # ??? - 단체예약, 개인예약 구분이라는데...
-            'txtJobId': '1101',  # 1101: 개인예약, 1102: 예약대기, 1103: SEATMAP예약
+
+            # 1101: 개인예약
+            # 1102: 예약대기
+            # 1103: SEATMAP예약
+            'txtJobId': '1101',
             'txtJrnyCnt': '1',  # 환승 횟수 (1이면 편도)
-            'txtPsrmClCd1': '1',  # 1: 일반실, 2: 특실
+
+            # 1: 일반실
+            # 2: 특실
+            'txtPsrmClCd1': '1',
             'txtJrnySqno1': '001',  # ???
             'txtJrnyTpCd1': '11',  # 편도
         }
