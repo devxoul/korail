@@ -1,4 +1,4 @@
-import unittest
+import unittest, simplejson
 from getpass import getpass
 from korail import Korail, KorailError
 
@@ -8,8 +8,9 @@ class TestKorail(unittest.TestCase):
     korail = Korail()
 
     def test_0_login(self):
-        user_id = raw_input("ID: ")
-        password = getpass()
+        obj = simplejson.loads((open('../userinfo.json').read()))
+        user_id = obj['id'] if obj.has_key('id') else raw_input("ID: ")
+        password = obj['pw'] if obj.has_key('pw') else getpass()
         phone_signing = raw_input("Use Phone Signing? (y/N) ").lower() == 'y'
         rv = self.korail.login(user_id, password, phone_signing)
         self.assertEqual(rv, True)
