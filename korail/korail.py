@@ -106,6 +106,7 @@ class Korail(object):
             'UserId': id,
             'UserPwd': password,
             'hidMemberFlg': '1',  # 없으면 입력값 오류
+            'txtDv': '1' if len(password) == 4 else '2',
         }
         r = self.session.post(url, data=data)
 
