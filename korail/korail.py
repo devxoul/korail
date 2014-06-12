@@ -210,7 +210,8 @@ class Korail(object):
             'txtDptDt1': train.dep_date,  # 출발날짜
             'txtDptTm1': train.dep_time,  # 출발시각
             'txtArvRsStnCd1': train.arr_code,  # 도착역 코드
-            'txtTrnClsfCd1': train.train_type,  # 열차 종류 (Train Class Code인듯)
+            'txtTrnClsfCd1': train.train_type,  # 열차 종류
+                                                # (Train Class Code인듯)
 
             # 15: 기본
             # 18: 2층석
@@ -245,7 +246,8 @@ class Korail(object):
             raise KorailError("로그인이 필요합니다.")
 
         elif u"홈페이지주소를 잘못 입력하셨습니다." in r.text:
-            raise KorailError("홈페이지주소를 잘못 입력하셨습니다. Referer를 확인해주세요.")
+            raise KorailError("홈페이지주소를 잘못 입력하셨습니다. "
+                              "Referer를 확인해주세요.")
 
         elif u"20분 이내 열차는" in r.text:
             raise KorailError("20분 이내 열차는 예약하실 수 없습니다. "
